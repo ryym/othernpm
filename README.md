@@ -42,7 +42,7 @@ a path.
 ### Node.js API
 
 Othernpm also provides API used in Node.js scripts.
-The module load configurations from `package.json` automatically
+The module loads configurations from `package.json` automatically
 so that you can use them as functions.
 
 ```javascript
