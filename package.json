@@ -4,7 +4,10 @@
   "description": "Run npm commands in other directories",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp check",
+    "coverage": "nyc gulp test",
+    "precoveralls": "npm run coverage",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "npm",
