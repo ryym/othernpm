@@ -5,11 +5,13 @@ import del from 'del';
 import glob from 'glob';
 import Mocha from 'mocha';
 import eslint from 'eslint';
+import onpm from './lib';
 
 const GLOB = {
   lib: './lib/**/*.js',
   build: './build/**/*.js',
-  spec: './test/**/*.spec.js'
+  spec: './test/lib/**/*.spec.js',
+  example: './test/example/**/*.spec.js'
 };
 
 gulp.task('clean', () => {
@@ -30,6 +32,10 @@ gulp.task('watch', ['clean'], () => {
       .on('error', e => console.log(e.stack))
       .pipe(gulp.dest('build/'));
   });
+});
+
+gulp.task('install:example', ['build'], done => {
+  onpm.example('install').on('exit', done);
 });
 
 gulp.task('test:prepare', () => {
@@ -55,16 +61,20 @@ gulp.task('test:watch', ['test:prepare'], () => {
   runAndWatch(GLOB.spec, null, () => test());
 });
 
+gulp.task('test:example', ['install:example'], done => {
+  onpm.example('run test').on('exit', done);
+});
+
 gulp.task('lint:lib', () => {
-  lintFiles(GLOB.lib, true);
+  lintFiles([GLOB.lib], true);
 });
 
 gulp.task('lint:test', () => {
-  lintFiles(GLOB.spec, true);
+  lintFiles([GLOB.spec, GLOB.example], true);
 });
 
 gulp.task('lint:gulp', () => {
-  lintFiles('./gulpfile.babel.js', true, {
+  lintFiles(['./gulpfile.babel.js'], true, {
     rules: { 'no-console': 0 }
   });
 });
@@ -92,7 +102,8 @@ gulp.task('lint:all', [
 
 gulp.task('check', [
   'lint:all',
-  'test'
+  'test',
+  'test:example'
 ]);
 
 gulp.task('default', [
@@ -142,7 +153,7 @@ function runAndWatch(watchPattern, initialValue, task) {
  */
 function lintFiles(pattern, strict, configs) {
   const linter = new eslint.CLIEngine(configs);
-  const report = linter.executeOnFiles([pattern]);
+  const report = linter.executeOnFiles(pattern);
   const formatter = linter.getFormatter();
   console.log(formatter(report.results));
   if (0 < report.errorCount || (strict && 0 < report.warningCount)) {
