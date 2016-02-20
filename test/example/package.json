@@ -1,0 +1,19 @@
+{
+  "name": "othernpm-example",
+  "private": true,
+  "description": "A example using othernpm",
+  "scripts": {
+    "test": "mocha example.spec.js",
+    "sub1": "onpm sub1 root",
+    "foo": "onpm foo root"
+  },
+  "othernpm": {
+    "foo": "./sub2/foo"
+  },
+  "dependencies": {
+    "othernpm": "file:../.."
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
