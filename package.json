@@ -14,9 +14,13 @@
     "script"
   ],
   "files": [
+    "bin",
     "build",
     "lib"
   ],
+  "bin": {
+    "onpm": "bin/onpm.js"
+  },
   "author": "ryym",
   "license": "MIT",
   "repository": {
