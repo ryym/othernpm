@@ -54,6 +54,17 @@ describe('othernpm()', () => {
       );
     });
 
+    it('returns a process object created by `spawn` function', () => {
+      const processObj = {};
+      prepareTest({
+        spawn: () => processObj,
+        isDirectory: () => true
+      });
+
+      const actual = onpm('foo')('command');
+      assert.equal(actual, processObj);
+    });
+
     it('accepts a config object for the spawn function', () => {
       const config = {
         env: { 'FOO': 'bar' },
