@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import gutil from 'gulp-util';
 import babel from 'gulp-babel';
 import del from 'del';
 import glob from 'glob';
@@ -19,6 +20,16 @@ gulp.task('build', ['clean'], () => {
   return gulp.src(GLOB.lib)
     .pipe(babel())
     .pipe(gulp.dest('build/'));
+});
+
+gulp.task('watch', ['clean'], () => {
+  runAndWatch(GLOB.lib, GLOB.lib, path => {
+    gutil.log(gutil.colors.cyan('babel:'), path);
+    gulp.src(path)
+      .pipe(babel())
+      .on('error', e => console.log(e.stack))
+      .pipe(gulp.dest('build/'));
+  });
 });
 
 gulp.task('test:prepare', () => {
