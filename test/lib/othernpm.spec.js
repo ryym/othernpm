@@ -20,30 +20,52 @@ describe('othernpm()', () => {
       });
     });
 
-    forEach([
-      [
-        'install',
-        ['install']
-      ],
-      [
-        '--version',
-        ['--version']
-      ],
-      [
-        'run build -- --foo=bar',
-        ['run', 'build', '--', '--foo=bar']
-      ],
-      [
-        ' space around ',
-        ['space', 'around']
-      ]
-    ])
-    .it('parse and run "%s" correctly', (command, expected) => {
-      onpm('')(command);
-      assert.deepEqual(
-        spawn.args[0].splice(0, 2),
-        ['npm', expected]
-      );
+    context('by string', () => {
+      forEach([
+        [
+          'install',
+          ['install']
+        ],
+        [
+          '--version',
+          ['--version']
+        ],
+        [
+          'run build -- --foo=bar',
+          ['run', 'build', '--', '--foo=bar']
+        ],
+        [
+          ' space around ',
+          ['space', 'around']
+        ]
+      ])
+      .it('parse and run "%s" correctly', (command, expected) => {
+        onpm('')(command);
+        assert.deepEqual(
+          spawn.args[0].splice(0, 2),
+          ['npm', expected]
+        );
+      });
+    });
+
+    context('by array', () => {
+      forEach([
+        [
+          ['install'],
+          ['install']
+        ],
+        [
+          ['run', 'build', '--', '--foo=bar'],
+          ['run', 'build', '--', '--foo=bar']
+        ]
+      ])
+      .it('parse and run %j correctly', (command, expected) => {
+        onpm('')(command);
+        assert.deepEqual(
+          spawn.args[0].splice(0, 2),
+          ['npm', expected]
+        );
+      });
     });
 
     it('specifies working directory as a given path', () => {
