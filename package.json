@@ -46,5 +46,9 @@
       "gulpfile.babel.js",
       "test/**/*"
     ]
+  },
+  "dependencies": {
+    "cross-spawn": "^2.1.5",
+    "find-config": "^1.0.0"
   }
 }
