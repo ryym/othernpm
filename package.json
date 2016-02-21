@@ -8,6 +8,7 @@
     "coverage": "nyc gulp test",
     "precoveralls": "npm run coverage",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "preversion": "gulp make",
     "eg": "bin/onpm example"
   },
   "keywords": [
