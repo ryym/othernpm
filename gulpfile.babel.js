@@ -20,11 +20,9 @@ gulp.task('clean', () => {
 });
 
 gulp.task('build', ['clean'], () => {
-  return buildLib();
-});
-
-gulp.task('make', ['clean', 'check'], () => {
-  return buildLib();
+  return gulp.src(GLOB.lib)
+    .pipe(babel())
+    .pipe(gulp.dest('build/'));
 });
 
 gulp.task('watch', ['clean'], () => {
@@ -121,15 +119,6 @@ gulp.task('default', [
   'test:watch'
 ]);
 
-
-/**
- * Build library using Babel.
- */
-function buildLib() {
-  return gulp.src(GLOB.lib)
-    .pipe(babel())
-    .pipe(gulp.dest('build/'));
-}
 
 /**
  * Clear module cache.
