@@ -8,7 +8,9 @@ function chomp(string) {
   }
 }
 
-describe('example for subdirectories', () => {
+describe('example for subdirectories', function() {
+  this.timeout(5000);
+
   it('run npm commands', done => {
     onpm('./sub1')('root', {
       stdio: false
