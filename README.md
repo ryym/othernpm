@@ -39,6 +39,20 @@ a path.
 % onpm examples test
 ```
 
+For example, this repository defines a npm-script named `eg` in its [package.json][root-pkg].
+By this, we can run any npm command in [test/example] from the root directory like:
+
+[root-pkg]: ./package.json
+[test/example]: ./test/example
+
+```sh
+# Check defined npm-scripts in 'test/example'.
+% npm run eg -- run
+
+# Install Mocha as a dev-dependency of 'test/example'.
+% npm run eg -- install --save-dev mocha
+```
+
 ### Node.js API
 
 Othernpm also provides API used in Node.js scripts.
