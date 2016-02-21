@@ -36,7 +36,9 @@ gulp.task('watch', ['clean'], () => {
 });
 
 gulp.task('install:example', ['build'], done => {
-  onpm.example('install').on('exit', done);
+  onpm.example('uninstall othernpm').on('exit', () => {
+    onpm.example('install').on('exit', done);
+  });
 });
 
 gulp.task('test:prepare', () => {
