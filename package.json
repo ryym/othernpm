@@ -13,7 +13,9 @@
   },
   "keywords": [
     "npm",
-    "script"
+    "other",
+    "directory",
+    "path"
   ],
   "files": [
     "bin",
