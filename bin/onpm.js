@@ -10,13 +10,14 @@ if (needHelp(process.argv)) {
 var onpm = require('../build');
 var pathOrAlias = process.argv[2];
 var command = process.argv.splice(3);
+var alias, path;
 
 if (onpm.hasOwnProperty(pathOrAlias)) {
-  const alias = pathOrAlias;
+  alias = pathOrAlias;
   onpm[alias](command);
 }
 else {
-  const path = pathOrAlias;
+  path = pathOrAlias;
   onpm(path)(command);
 }
 
