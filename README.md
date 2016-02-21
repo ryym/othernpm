@@ -1,5 +1,3 @@
-# :construction: WIP :construction:
-
 # Othernpm
 
 [![npm version][npm-badge]][npm-version]
