@@ -8,7 +8,7 @@
     "coverage": "nyc gulp test",
     "precoveralls": "npm run coverage",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "eg": "bin/onpm.js example"
+    "eg": "bin/onpm example"
   },
   "keywords": [
     "npm",
@@ -20,7 +20,7 @@
     "lib"
   ],
   "bin": {
-    "onpm": "bin/onpm.js"
+    "onpm": "bin/onpm"
   },
   "author": "ryym",
   "license": "MIT",
