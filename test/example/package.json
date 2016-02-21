@@ -4,8 +4,8 @@
   "description": "A example using othernpm",
   "scripts": {
     "test": "mocha example.spec.js",
-    "sub1": "onpm sub1 root",
-    "foo": "onpm foo root"
+    "sub1": "onpm sub1",
+    "foo": "onpm foo"
   },
   "othernpm": {
     "foo": "./sub2/foo"

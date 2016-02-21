@@ -7,7 +7,8 @@
     "test": "gulp check",
     "coverage": "nyc gulp test",
     "precoveralls": "npm run coverage",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "eg": "bin/onpm.js example"
   },
   "keywords": [
     "npm",
