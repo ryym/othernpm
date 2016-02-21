@@ -8,8 +8,8 @@ function chomp(string) {
   }
 }
 
-describe('example', () => {
-  it('run command by specifying the path', done => {
+describe('example for subdirectories', () => {
+  it('run npm commands', done => {
     onpm('./sub1')('root', {
       stdio: false
     })
@@ -22,16 +22,18 @@ describe('example', () => {
     });
   });
 
-  it('run command by config', done => {
-    onpm.foo('root', {
-      stdio: false
-    })
-    .stdout.on('data', data => {
-      assert.equal(
-        chomp(data.toString()),
-        path.join(__dirname, 'sub2', 'foo', 'node_modules')
-      );
-      done();
+  context('with config', () => {
+    it('has pre-configured methods', done => {
+      onpm.foo('root', {
+        stdio: false
+      })
+      .stdout.on('data', data => {
+        assert.equal(
+          chomp(data.toString()),
+          path.join(__dirname, 'sub2', 'foo', 'node_modules')
+        );
+        done();
+      });
     });
   });
 });
