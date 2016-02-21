@@ -8,6 +8,7 @@ import eslint from 'eslint';
 import onpm from './lib';
 
 const GLOB = {
+  bin: './bin/**/*',
   lib: './lib/**/*.js',
   build: './build/**/*.js',
   spec: './test/lib/**/*.spec.js',
@@ -73,6 +74,10 @@ gulp.task('lint:test', () => {
   lintFiles([GLOB.spec, GLOB.example], true);
 });
 
+gulp.task('lint:bin', () => {
+  lintFiles([GLOB.bin], true);
+});
+
 gulp.task('lint:gulp', () => {
   lintFiles(['./gulpfile.babel.js'], true, {
     rules: { 'no-console': 0 }
@@ -92,7 +97,8 @@ gulp.task('lint:watch', () => {
 
 gulp.task('lint', [
   'lint:lib',
-  'lint:test'
+  'lint:test',
+  'lint:bin'
 ]);
 
 gulp.task('lint:all', [
