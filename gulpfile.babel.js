@@ -128,7 +128,7 @@ function clearModuleCache(path) {
 }
 
 /**
- * Run tests in the specified file pattern using Mocha
+ * Run tests in the specified file pattern using Mocha.
  */
 function runTests(pattern, options) {
   const mocha = new Mocha(options);
