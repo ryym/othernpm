@@ -120,7 +120,7 @@ describe('othernpm()', () => {
     beforeEach(() => {
       prepareTest({
         spawn: sinon.spy(),
-        isDirectory: sinon.stub().returns(false)
+        isDirectory: () => false
       });
     });
 
