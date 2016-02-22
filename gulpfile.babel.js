@@ -20,11 +20,9 @@ gulp.task('clean', () => {
 });
 
 gulp.task('build', ['clean'], () => {
-  return buildLib();
-});
-
-gulp.task('make', ['clean', 'check'], () => {
-  return buildLib();
+  return gulp.src(GLOB.lib)
+    .pipe(babel())
+    .pipe(gulp.dest('build/'));
 });
 
 gulp.task('watch', ['clean'], () => {
@@ -123,15 +121,6 @@ gulp.task('default', [
 
 
 /**
- * Build library using Babel.
- */
-function buildLib() {
-  return gulp.src(GLOB.lib)
-    .pipe(babel())
-    .pipe(gulp.dest('build/'));
-}
-
-/**
  * Clear module cache.
  */
 function clearModuleCache(path) {
@@ -139,7 +128,7 @@ function clearModuleCache(path) {
 }
 
 /**
- * Run tests in the specified file pattern using Mocha
+ * Run tests in the specified file pattern using Mocha.
  */
 function runTests(pattern, options) {
   const mocha = new Mocha(options);

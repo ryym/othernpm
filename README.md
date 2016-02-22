@@ -81,7 +81,7 @@ so that you can use them as functions.
 const onpm = require('othernpm');
 
 // Run the 'start' script in the examples directory.
-onpm.example('start');
+onpm.examples('start');
 
 // Run the 'build' script in the site directory.
 onpm.site('run build');

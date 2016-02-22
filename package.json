@@ -1,6 +1,6 @@
 {
   "name": "othernpm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Run npm commands in other directories",
   "main": "build/index.js",
   "scripts": {
@@ -8,12 +8,14 @@
     "coverage": "nyc gulp test",
     "precoveralls": "npm run coverage",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "preversion": "gulp make",
+    "preversion": "npm test",
     "eg": "bin/onpm example"
   },
   "keywords": [
     "npm",
-    "script"
+    "other",
+    "directory",
+    "path"
   ],
   "files": [
     "bin",
@@ -42,6 +44,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-util": "^3.0.7",
+    "is-directory": "^0.3.0",
     "mocha": "^2.4.5",
     "mocha-each": "^1.0.2",
     "nyc": "^5.6.0",
