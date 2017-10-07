@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import forEach from 'mocha-each';
 import sinon from 'sinon';
-import othernpm from '$lib/othernpm';
+import othernpm from '../../lib/othernpm';
 
 /** @test {othernpm} */
 describe('othernpm()', () => {
