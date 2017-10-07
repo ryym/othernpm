@@ -55,7 +55,7 @@
     ]
   },
   "dependencies": {
-    "cross-spawn": "^2.1.5",
+    "cross-spawn": "^5.1.0",
     "find-config": "^1.0.0",
     "is-directory": "^0.3.0"
   },
