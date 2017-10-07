@@ -138,4 +138,22 @@ describe('othernpm()', () => {
     });
   });
 
+  context('with exit event handling', () => {
+    let spawnOn = sinon.spy();
+    let onExit = () => {};
+
+    beforeEach(() => {
+      prepareTest({
+        spawn: () => ({ on: spawnOn }),
+        isDirectory: () => true,
+        onExit
+      });
+    });
+
+    it('accepts exit event handler', () => {
+      onpm('')('command');
+      assert.deepEqual(spawnOn.args, [['exit', onExit]]);
+    });
+  });
+
 });
