@@ -1,11 +1,10 @@
-import gulp from 'gulp';
-import gutil from 'gulp-util';
-import babel from 'gulp-babel';
-import del from 'del';
-import glob from 'glob';
-import Mocha from 'mocha';
-import eslint from 'eslint';
-import onpm from './lib';
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const babel = require('gulp-babel');
+const del = require('del');
+const glob = require('glob');
+const Mocha = require('mocha');
+const eslint = require('eslint');
 
 const GLOB = {
   bin: './bin/**/*',
@@ -36,6 +35,7 @@ gulp.task('watch', ['clean'], () => {
 });
 
 gulp.task('install:example', ['build'], done => {
+  const onpm = require('./build');
   onpm.example('install --force --no-package-lock').on('exit', done);
 });
 
@@ -63,6 +63,7 @@ gulp.task('test:watch', ['test:prepare'], () => {
 });
 
 gulp.task('test:example', ['install:example'], done => {
+  const onpm = require('./build');
   onpm.example('run test').on('exit', done);
 });
 
