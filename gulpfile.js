@@ -133,7 +133,7 @@ function runTests(pattern, options) {
   const mocha = new Mocha(options);
   const files = glob.sync(pattern, { realpath: true });
   files.forEach(file => {
-    clearModuleCache(file);  // For watching
+    clearModuleCache(file); // For watching
     mocha.addFile(file);
   });
   return new Promise((resolve, reject) => {
