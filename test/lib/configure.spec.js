@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 import sinon from 'sinon';
-import configure from '$lib/configure';
+import configure from '../../lib/configure';
 
 /** @test {configure} */
 describe('configure()', () => {

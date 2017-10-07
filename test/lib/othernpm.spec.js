@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import forEach from 'mocha-each';
 import sinon from 'sinon';
-import othernpm from '$lib/othernpm';
+import othernpm from '../../lib/othernpm';
 
 /** @test {othernpm} */
 describe('othernpm()', () => {
@@ -39,13 +39,13 @@ describe('othernpm()', () => {
           ['space', 'around']
         ]
       ])
-      .it('parse and run "%s" correctly', (command, expected) => {
-        onpm('')(command);
-        assert.deepEqual(
-          spawn.args[0].splice(0, 2),
-          ['npm', expected]
-        );
-      });
+        .it('parse and run "%s" correctly', (command, expected) => {
+          onpm('')(command);
+          assert.deepEqual(
+            spawn.args[0].splice(0, 2),
+            ['npm', expected]
+          );
+        });
     });
 
     context('by array', () => {
@@ -59,13 +59,13 @@ describe('othernpm()', () => {
           ['run', 'build', '--', '--foo=bar']
         ]
       ])
-      .it('parse and run %j correctly', (command, expected) => {
-        onpm('')(command);
-        assert.deepEqual(
-          spawn.args[0].splice(0, 2),
-          ['npm', expected]
-        );
-      });
+        .it('parse and run %j correctly', (command, expected) => {
+          onpm('')(command);
+          assert.deepEqual(
+            spawn.args[0].splice(0, 2),
+            ['npm', expected]
+          );
+        });
     });
 
     it('specifies working directory as a given path', () => {
@@ -106,13 +106,13 @@ describe('othernpm()', () => {
         [['']],
         [[' ']]
       ])
-      .it('works fine for %j', emptyCommand => {
-        onpm('foo')(...emptyCommand);
-        assert.deepEqual(
-          spawn.args[0].splice(0, 2),
-          ['npm', []]
-        );
-      });
+        .it('works fine for %j', emptyCommand => {
+          onpm('foo')(...emptyCommand);
+          assert.deepEqual(
+            spawn.args[0].splice(0, 2),
+            ['npm', []]
+          );
+        });
     });
   });
 

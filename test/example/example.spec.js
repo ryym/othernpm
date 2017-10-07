@@ -15,27 +15,27 @@ describe('example for subdirectories', function() {
     onpm('./sub1')('root', {
       stdio: false
     })
-    .stdout.on('data', data => {
-      assert.equal(
-        chomp(data.toString()),
-        path.join(__dirname, 'sub1', 'node_modules')
-      );
-      done();
-    });
+      .stdout.on('data', data => {
+        assert.equal(
+          chomp(data.toString()),
+          path.join(__dirname, 'sub1', 'node_modules')
+        );
+        done();
+      });
   });
 
   it('run npm-scripts', done => {
     onpm('./sub2/foo')('run greet', {
       stdio: false
     })
-    .stdout.on('data', data => {
-      const output = chomp(data.toString());
-      if (/^>/.test(output)) {
-        return;
-      }
-      assert.equal(output, 'Hello, everyone!');
-      done();
-    });
+      .stdout.on('data', data => {
+        const output = chomp(data.toString());
+        if (/^>/.test(output)) {
+          return;
+        }
+        assert.equal(output, 'Hello, everyone!');
+        done();
+      });
   });
 
   context('with config', () => {
@@ -43,13 +43,13 @@ describe('example for subdirectories', function() {
       onpm.foo('root', {
         stdio: false
       })
-      .stdout.on('data', data => {
-        assert.equal(
-          chomp(data.toString()),
-          path.join(__dirname, 'sub2', 'foo', 'node_modules')
-        );
-        done();
-      });
+        .stdout.on('data', data => {
+          assert.equal(
+            chomp(data.toString()),
+            path.join(__dirname, 'sub2', 'foo', 'node_modules')
+          );
+          done();
+        });
     });
   });
 });
