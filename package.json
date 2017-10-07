@@ -50,7 +50,7 @@
   },
   "nyc": {
     "exclude": [
-      "gulpfile.babel.js",
+      "gulpfile.js",
       "test/**/*"
     ]
   },
